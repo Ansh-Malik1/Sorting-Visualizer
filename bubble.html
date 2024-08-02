@@ -1,0 +1,242 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+	
+<!-- head -->
+<head> 
+	
+	<!-- linking style.css -->
+	<link href="style.css" rel="stylesheet" /> 
+</head> 
+
+<!-- body -->
+<body> 
+	<section class="head">Bubble Sort</section> 
+    <section  style="color:whitesmoke ; width:90% ; text-align:center; margin:10px auto ">Bubble sort works on the repeatedly swapping of adjacent elements until they are not in the intended order. It is called bubble sort because the movement of array elements is just like the movement of air bubbles in the water. Bubbles in water rise up to the surface; similarly, the array elements in bubble sort move to the end in each iteration.</section>
+	<section class="data-container"></section> 
+	<section id="ele"></section> 
+	<div style="margin: auto; width: fit-content;"> 
+        <button class="btn1"
+            onclick="generate()" id="Button1" > 
+            Generate New Array
+        </button> 
+            
+        <button class="btn2"
+            onclick="InsertionSort(),disable()"
+            id="Button2" > 
+            Start
+        </button> 
+	</div>
+    <div style="display:flex; flex-direction:column; align-items:center; margin:40px auto ">
+        <label for="points" style="color:azure">Select the speed of the animation</label>
+        <div style="display:flex; justify-content:center; align-items:center ; margin:10px auto; gap:2rem">
+            
+            <input type="range" min="50" max="800" step="50" id="speed"
+            oninput="setSpeed()">
+            <p style="color:azure">Current speed is : <span  id="speedDisplay">350</span> ms </p>
+        </div>
+    </div>	 
+</body> 
+<style>
+    .mySlides { 
+        display: none; 
+    } 
+        
+    body { 
+        background-color: rgb(0, 0, 0); 
+        font-family: Verdana, sans-serif; 
+    } 
+        
+    .head { 
+        margin: 20px auto;  
+        text-align: center; 
+        font-size: 30px; 
+        background-color: #d8d6d6; 
+        color: rgb(0, 0, 0); 
+        border-radius:19px; 
+        font-weight: bolder; 
+        width: 30%;
+    
+    } 
+        
+    .data-container { 
+        width: 600px; 
+        height: 364px; 
+        position: relative; 
+        margin: 0 auto; 
+    } 
+       
+    .bar { 
+        width: 28px; 
+        position: absolute; 
+        left: 0; 
+        bottom: 0; 
+        background-color: rgb(0, 183, 255); 
+        transition: 0.2s all ease; 
+    } 
+        
+    .bar__id { 
+        position: absolute; 
+        top: -24px; 
+        width: 100%; 
+        text-align: center; 
+        color: #d8d6d6
+    } 
+    .btn1{ 
+        padding: 12px; 
+        font-weight: bolder; 
+        background-color: #d8d6d6; 
+        color: rgb(0, 0, 0); 
+        border-radius: 10px; 
+        font-size: 16px; 
+        border: white; 
+        margin-top: 1vw; 
+        margin-right: 1vw; 
+        cursor: pointer;
+    } 
+    .btn2{ 
+        padding: 12px; 
+        font-weight: bolder; 
+        background-color: #d8d6d6; 
+        color: rgb(0, 0, 0); 
+        border-radius: 10px; 
+        font-size: 16px; 
+        border: white;
+        cursor: pointer;
+    } 
+    #ele{ 
+        text-align: center; 
+        height: 35px; 
+        color:wheat
+    } 
+        
+</style>
+
+<script>
+    const container = document.querySelector(".data-container"); 
+    let speed=800-350;
+    // Function to generate bars 
+    function generatebars(num = 20) { 
+
+    //For loop to generate 20 bars 
+    for (let i = 0; i < num; i += 1) { 
+
+        // To generate random values from 1 to 100 
+        const value = Math.floor(Math.random() * 100) + 1; 
+
+        // To create element "div" 
+        const bar = document.createElement("div"); 
+
+        // To add class "bar" to "div" 
+        bar.classList.add("bar"); 
+
+        // Provide height to the bar 
+        bar.style.height = `${value * 3}px`; 
+        // Translate the bar towards positive X axis 
+        bar.style.transform = `translateX(${i * 30}px)`; 
+
+        // To create element "label" 
+        const barLabel = document.createElement("label"); 
+
+        // To add class "bar_id" to "label" 
+        barLabel.classList.add("bar__id"); 
+
+        // Assign value to "label" 
+        barLabel.innerHTML = value; 
+
+        // Append "Label" to "div" 
+        bar.appendChild(barLabel); 
+
+        // Append "div" to "data-container div" 
+        container.appendChild(bar); 
+    } 
+    } 
+ 
+    async function InsertionSort(delay = speed) { 
+    let bars = document.querySelectorAll(".bar"); 
+    let start = 0;
+    let end = 20
+    let swapped = false
+    for(var i = 0 ; i<end-1 ;  i+=1){
+        for(var j = 0 ; j<end-1 ; j+=1){
+            let h1 = parseInt(bars[j].childNodes[0].innerHTML)
+            let h2 = parseInt(bars[j+1]?.childNodes[0].innerHTML)
+            bars[j].style.backgroundColor = "blue"
+            bars[j+1].style.backgroundColor = "green"
+            if(h1>h2){
+                let temp = h1;
+                h1 = h2;
+                h2 = temp;
+                swapped=true
+                bars[j].childNodes[0].innerHTML = h1;
+                bars[j+1].childNodes[0].innerHTML = h2;
+                bars[j].style.height=`${h1*3}px`
+                bars[j+1].style.height=`${h2*3}px`
+            }
+            await new Promise((resolve) => 
+            setTimeout(() => {
+            bars[j].style.backgroundColor = "rgb(0, 183, 255)"
+            bars[j+1].style.backgroundColor = "rgb(0, 183, 255)"
+            resolve(); 
+            },800-speed)); 
+        }
+        if(swapped==false){
+            break;
+        }
+        await new Promise((resolve) => 
+        setTimeout(() => { 
+            
+        resolve(); 
+        },800-speed)); 
+    }
+    document.getElementById("Button1") 
+    .disabled = false; 
+    document.getElementById("Button1") 
+    .style.backgroundColor = "#d8d6d6"; 
+    document.getElementById("Button1") 
+    .style.cursor = "pointer"
+
+    document.getElementById("Button2") 
+    .disabled = false; 
+    document.getElementById("Button2") 
+    .style.backgroundColor = "#d8d6d6"; 
+    document.getElementById("Button2") 
+    .style.cursor = "pointer"
+    document.getElementById("speed").disabled=false;
+}
+    generatebars(); 
+
+    function generate() 
+    { 
+    window.location.reload(); 
+    } 
+
+    function disable() 
+    { 
+    document.getElementById("Button1") 
+    .disabled = true; 
+    document.getElementById("Button1") 
+    .style.backgroundColor = "rgb(227, 134, 134)";  
+    document.getElementById("Button1") 
+    .style.cursor = "not-allowed"
+
+    document.getElementById("Button2") 
+    .disabled = true; 
+    document.getElementById("Button2") 
+    .style.backgroundColor = "rgb(227, 134, 134)"; 
+
+    document.getElementById("Button2") 
+    .style.cursor = "not-allowed"
+
+    document.getElementById("speed").disabled=true;
+    } 
+
+
+    function setSpeed(){
+        display = document.getElementById("speedDisplay")
+        value = document.getElementById("speed")
+        console.log(value)
+        display.innerHTML = value.value
+    }
+</script>
+
+</html> 
