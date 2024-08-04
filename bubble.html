@@ -161,7 +161,7 @@
             let h1 = parseInt(bars[j].childNodes[0].innerHTML)
             let h2 = parseInt(bars[j+1]?.childNodes[0].innerHTML)
             bars[j].style.backgroundColor = "blue"
-            bars[j+1].style.backgroundColor = "green"
+            bars[j+1].style.backgroundColor = "red"
             if(h1>h2){
                 let temp = h1;
                 h1 = h2;
@@ -184,7 +184,6 @@
         }
         await new Promise((resolve) => 
         setTimeout(() => { 
-            
         resolve(); 
         },800-speed)); 
     }
@@ -234,7 +233,7 @@
     function setSpeed(){
         display = document.getElementById("speedDisplay")
         value = document.getElementById("speed")
-        console.log(value)
+        speed=parseInt(value.value)
         display.innerHTML = value.value
     }
 </script>

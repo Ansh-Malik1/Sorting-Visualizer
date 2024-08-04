@@ -1,7 +1,7 @@
 body { 
-    background-color: rgb(254, 254, 254); 
+    background-color: rgb(6, 0, 0); 
     font-family: Verdana, sans-serif; 
-    /* color:white */
+    color:white
 }
 
 .container{
@@ -15,7 +15,7 @@ body {
 
 .buttons{
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(3,1fr);
     gap:3rem;
     margin-top: 4rem;
     border: 2px solid azure;
@@ -26,7 +26,7 @@ body {
 
 .buttons a{
     text-decoration: none;
-    /* color: white; */
+    color: white;
     transition: scale 200ms ease;
 }
 

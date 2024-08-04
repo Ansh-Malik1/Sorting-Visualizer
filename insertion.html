@@ -11,6 +11,7 @@
 <!-- body -->
 <body> 
 	<section class="head">Insertion Sort</section> 
+    <section  style="color:whitesmoke ; width:90% ; text-align:center; margin:10px auto ">Insertion sort works similar to the sorting of playing cards in hands. It is assumed that the first card is already sorted in the card game, and then we select an unsorted card. If the selected unsorted card is greater than the first card, it will be placed at the right side; otherwise, it will be placed at the left side. Similarly, all unsorted cards are taken and put in their exact place.</section>
 	<section class="data-container"></section> 
 	<section id="ele"></section> 
 	<div style="margin: auto; width: fit-content;"> 
@@ -29,7 +30,7 @@
         <label for="points" style="color:azure">Select the speed of the animation</label>
         <div style="display:flex; justify-content:center; align-items:center ; margin:10px auto; gap:2rem">
             
-            <input type="range" min="50" max="600" step="50" id="speed"
+            <input type="range" min="50" max="800" step="50" id="speed"
             oninput="setSpeed()">
             <p style="color:azure">Current speed is : <span  id="speedDisplay">350</span> ms </p>
         </div>
@@ -112,7 +113,7 @@
 
 <script>
     const container = document.querySelector(".data-container"); 
-    let speed=350;
+    let speed=450;
     // Function to generate bars 
     function generatebars(num = 20) { 
 
@@ -183,7 +184,7 @@
         await new Promise((resolve) => 
         setTimeout(() => { 
         resolve(); 
-        },speed) 
+        },800-speed) 
     ); 
 
         // For placing selected element at its correct position 
@@ -204,7 +205,7 @@
         await new Promise((resolve) => 
             setTimeout(() => { 
             resolve(); 
-            },speed) 
+            },800-speed) 
         ); 
             
         // Provide lightgreen color to the sorted part 
@@ -221,7 +222,7 @@
         await new Promise((resolve) => 
         setTimeout(() => { 
             resolve(); 
-        }, speed) 
+        }, 800-speed) 
         ); 
         
         // Provide light green color to the ith bar 
